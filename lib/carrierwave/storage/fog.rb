@@ -395,7 +395,7 @@ module CarrierWave
         #
         def filename(options = {})
           if file_url = URI.parse(url(options)) rescue nil
-            File.basename(file_url.path)
+            IO::File.basename(file_url.path)
           end
         end
 
