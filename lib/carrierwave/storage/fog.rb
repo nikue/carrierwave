@@ -394,8 +394,8 @@ module CarrierWave
         # [NilClass] no file name available
         #
         def filename(options = {})
-          if file_url = URI.parse(url(options)) rescue nil
-            IO::File.basename(file_url.path)
+          if file_url = url(options)
+            URI.decode(file_url.split('?').first).gsub(/.*\/(.*?$)/, '\1')
           end
         end
 
